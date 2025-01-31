@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HoloGen Labs — Coming Soon</title>
+  <style>
+    /* GLOBAL RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Helvetica Neue', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* SCANLINES (OPTIONAL FUTURISTIC OVERLAY) */
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+      animation: flicker 2s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.8; }
+    }
+
+    /* COMING SOON CONTAINER */
+    .coming-soon-container {
+      text-align: center;
+      max-width: 600px;
+      padding: 1rem;
+      z-index: 1; /* in front of scanlines */
+    }
+
+    /* TITLE */
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    h1::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(to right, #00f3ff, #a300ff);
+    }
+
+    /* SPINNER (LOADING SIGN) */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #222;
+      border-top: 6px solid #00f3ff;
+      border-radius: 50%;
+      margin: 2rem auto;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* DESCRIPTION TEXT */
+    p {
+      margin-bottom: 1.5rem;
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.4rem;
+    }
+
+    /* EMAIL FORM */
+    .notify-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .notify-form input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #111;
+      color: #fff;
+    }
+    .notify-form input::placeholder {
+      color: #666;
+    }
+
+    /* SUBMIT BUTTON */
+    .notify-form button {
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(to right, #00f3ff, #a300ff);
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .notify-form button:hover {
+      background: linear-gradient(to right, #a300ff, #00f3ff);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- FUTURISTIC SCANLINE OVERLAY (Optional) -->
+  <div class="scanlines"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="coming-soon-container">
+    <h1>HoloGen Labs</h1>
+    <div class="spinner"></div>
+    <p>We’re forging next-gen holographic 3D vision. Stay tuned for a realm of immersive experiences!</p>
+
+    <!-- NOTIFY FORM -->
+    <form class="notify-form" onsubmit="event.preventDefault(); /* Integrate with your backend or email service here */">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+</body>
+</html>
